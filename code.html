@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Count Ninja</title>
 
 
     <!-- Bootstrap CSS -->
@@ -22,8 +22,8 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"> <img src="" class="d-line-block align-text-top" width="30" height="24">
-                App Name</a>
+            <a class="navbar-brand" href="index.html"> <img src="img/logo-white-small.svg" class="d-line-block align-text-top" width="30" height="24">
+                Count Ninja</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,16 +31,17 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link " href="index.html">Home</a>
+                        <a class="nav-link" href="index.html">Home</a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="nav-link" href="app.html">The App</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/josephacevedo" target="_blank">Git Repo</a>
+                        <a class="nav-link" href="https://github.com/josephacevedo/Count-Ninja" target="_blank">Git
+                            Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://josephacevedo.netlify.app" target="_blank">About</a>
@@ -55,54 +56,111 @@
     <main class="flex-shrink-0">
 
         <div class="container py-5 px-5">
-            <h2 class="border-1 border-bottom border-dark mt-5">Title</h2>
+            <h2 class="border-1 border-bottom border-dark mt-5">Count Ninja</h2>
             <div class="row row-cols-1 row-cols-lg-2 mt-5">
                 <!-- code -->
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                 //call hello world
-                  function HelloWorld(){
-                     alert("Hello World");
-                     }
-                 HelloWorld();
+                            // get values from page
+                            function getValues() {
+                              let startValue = document.getElementById("startValue").value;
+                              let endValue = document.getElementById("endValue").value;
+                            
+                              // parse into int | validating input values
+                              startValue = parseInt(startValue);
+                              endValue = parseInt(endValue);
+                            
+                              if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                let numbers = generateNumbers(startValue, endValue);
+                            
+                                // call display numbers
+                                displayNumbers(numbers);
+                              } else {
+                                alert("You must enter an integer");
+                              }
+                            }
+                            
+                            // generate numbers from start value to end value
+                            function generateNumbers(sValue, eValue) {
+                              let numbers = [];
+                            
+                              //   get all numbers from start to end
+                              for (let i = sValue; i <= eValue; i++) {
+                                numbers.push(i);
+                              }
+                            
+                              return numbers;
+                            }
+                            
+                            // display the numbers and mark even numbers bold
+                            function displayNumbers(numbers) {
+                              let templateRows = "";
+                            
+                              for (let i = 0; i < numbers.length; i++) {
+                                let className = "even";
+                                let number = numbers[i];
+                            
+                                if (number % 2 == 0) {
+                                  className = "even";
+                                } else {
+                                  className = "odd";
+                                }
+                                // this part does not render correctly in prism. 
+                                //Check github repo for correct code
+                                templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+                              }
+                              document.getElementById("results").innerHTML = templateRows;
+                            }
+                            
                  
                     </code>
                 </pre>
                 </div>
                 <!-- description -->
                 <div class="col-lg-4">
-                    <p>The code is structured in one function</p>
-                    <h5>Hello World</h5>
-                    <p>Hello world is a function that displays an alert with a message of hello world</p>
+                    <h5>getValues()</h5>
+                    <p>This is the main function that is ran when the run button is clicked on in the application.
+                        The getValues function contains all of the other functions that are required for the application to work. Lastly inside this function we also validate the numbers that are passed so that we only integers are passed and not strings.  </p>
+
+
+                    <h5>generateValues()</h5>
+                    <p>This function has two parameters, a start and end value. The for loop starts at the start value and loops through numbers until it reaches the end value, then it takes all those numbers and pushes them into an array called numbers.</p>
+
+                    <h5>displayNumbers()</h5>
+                    <p>This function is in control making even numbers bold. How it works is that it runs a  loop from 0 to the end value, and for each number that is evenly divisible by 2 it adds a class of "even" to it and this class just makes the number bold. and lastly it takes all the numbers and puts them in a table and that is what gets displayed to the user. </p>
                 </div>
             </div>
             </di>
     </main>
 
     <!-- footer section -->
-    <footer class="footer mt-auto py-3 fixed-bottom">
-        <div class="container-fluid ">
-            <div class="row row-cols-1 row-cols-lg-3 gy-2">
-                <!-- copy right and name -->
-                <div class="col order-last order-lg-first text-light">
-                    <span>&copy;2021</span> Joseph Acevedo | josephacevedo1997@gmail.com
+    <footer class="footer fixed-bottom">
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-md-3">
+                <!-- copy rights and name -->
+                <div class="col text-light order-last d-flex justify-content-center">
+                    <p><span>&copy;2021</span> Joseph Acevedo | josephacevedo1997@gmail.com</p>
                 </div>
                 <!-- logo -->
-                <!-- ISSUES: NEED TO CREATE A NEW BETTER LOGO!!!!! -->
-                <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
-                    <img src="img/LogoAttempt1-dark.svg" alt="joseph acevedo logo" class="footer-logo">
+                <div class="col d-flex justify-content-end align-items-center order-first justify-content-md-center">
+                    
+                            <img src="img/logo-white-2.svg" alt="joseph acevedo logo" class="footer-logo">
+                   
                 </div>
 
                 <!-- social media links -->
-                <!-- ISSUES: LINK SOCIAL MEDIA LINK -->
-                <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
-                    <div class="row">
-                        <div class="col social"><a href="#" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+
+                <div class="col d-flex align-items-center">
+                    <div class="row ">
+                        <div class="col social"><a href="https://www.linkedin.com/in/joseph-acevedo-980b3b15a/"
+                                target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
                         </div>
-                        <div class="col social"><a href="#" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                        <div class="col social"><a href="https://github.com/josephacevedo" target="_blank"><i
+                                    class="fab fa-github fa-2x"></i></a>
                         </div>
-                        <div class="col social"><a href="#" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                        <div class="col social"><a href="https://twitter.com/DeveloperJoeA" target="_blank"><i
+                                    class="fab fa-twitter fa-2x"></i></a>
                         </div>
 
                     </div>

@@ -5,6 +5,14 @@
      --white-color:#e7e7e7;
 }
 
+.odd{
+    font-weight: 100;
+}
+
+.even{
+    font-weight: bold;
+    font-size: large;
+}
 body{
     color:var(--dark-color);
 }
@@ -56,7 +64,16 @@ code[class*="language-"],
         }
 
 .footer-logo{
+    width: 150px;
     position: absolute;
-    height: 5rem;
-
+    top:10px;
 }
+
+
+
+/* @media only screen and (max-width: 600px) {
+    .footer-logo{
+        visibility: hidden;
+    }
+
+} */
